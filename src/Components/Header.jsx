@@ -22,7 +22,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <hr className='w-full mb-[29px] m-auto' />
+            <hr className='w-full mb-[19px] m-auto' />
         </>
     )
 }
