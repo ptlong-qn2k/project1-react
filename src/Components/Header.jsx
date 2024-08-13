@@ -1,14 +1,16 @@
 import { useState } from "react";
 import '../App.css'
-
+import { Button } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 const Header = () => {
     return (
         <>
             <div className='w-full h-[50px] flex flex-row justify-between items-center m-auto'>
-                <div className='w-[119px] h-8 flex flex-row items-center justify-between'>
-                    <div className='w-8 h-8 rounded-[5px] bg-[#04474433]'>
+                <div className='w-[119px] h-8 flex flex-row items-center'>
+                    <Button startIcon={<MenuIcon />} className="!bg-[#04474433] !w-8 !h-8 rounded-[5px]"></Button>
+                    {/* <div className='w-8 h-8 rounded-[5px] bg-[#04474433]'>
                         <img src="public/session1/hamburger-button.png" alt="" />
-                    </div>
+                    </div> */}
                     <p className='font-bold text-base'>Programs</p>
                 </div>
                 <div className='w-[150px] h-[29px] flex flex-row justify-between'>

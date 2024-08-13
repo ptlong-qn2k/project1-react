@@ -2,7 +2,7 @@ import axios from "axios"
 
 const fetchData = axios.create({
     baseURL: "https://dummyjson.com",
-    timeout: 1000,
+    timeout: 3000,
     headers: { 'X-Custom-Header': 'foobar' }
 })
 

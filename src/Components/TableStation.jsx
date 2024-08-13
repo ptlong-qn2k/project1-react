@@ -1,50 +1,103 @@
 import { useState, useEffect } from "react";
 import '../App.css'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Switch from '@mui/material/Switch';
+
+const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
 
 
-const TableStation = ({ listUsers }) => {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, deleteData }) => {
 
   // console.log("Props", listUsers);
+  const [boolean, setBoolean] = useState(false)
+  const [boolean1, setBoolean1] = useState(false)
+  const HanleSwitch = () => {
+    setBoolean(!boolean)
+  }
 
+  const displayTitle = () => {
+    dataTitle()
+  }
+  const displaySku = () => {
+    dataSku()
+  }
+  const displayWeight = () => {
+    dataWeight()
+  }
+  const displayPrice = () => {
+    dataPrice()
+  }
+  const displayDelete = () => {
+    console.log("click deleyte", deleteData);
+    setBoolean1(!boolean1)
+    deleteData(boolean1)
+  }
   return (
-    <>
-      <table className='w-full h-[265px] m-auto  border-gray-300 border-[2px] mb-[368px] text-xs'>
+    <TableContainer component={Paper} className="mb-[368px]">
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align="left">ID</StyledTableCell>
+            <StyledTableCell onClick={displayTitle} align="left" className="cursor-pointer">Tittle</StyledTableCell>
+            <StyledTableCell onClick={displaySku} align="left" className="cursor-pointer">Sku</StyledTableCell>
+            <StyledTableCell onClick={displayWeight} align="left" className="cursor-pointer">Weight</StyledTableCell>
+            <StyledTableCell onClick={displayPrice} align="left" className="cursor-pointer">Price</StyledTableCell>
+            <StyledTableCell align="left">Enable</StyledTableCell>
+            <StyledTableCell align="left">Actions</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {listUsers && listUsers.map((data) => (
+            <StyledTableRow key={data.id}>
+              <StyledTableCell component="th" scope="row">{data.id}</StyledTableCell>
+              <StyledTableCell align="left">{data.title}</StyledTableCell>
+              <StyledTableCell align="left">{data.sku}</StyledTableCell>
+              <StyledTableCell align="left">{data.weight}</StyledTableCell>
+              <StyledTableCell align="left">{data.price}</StyledTableCell>
+              <StyledTableCell align="left" >
+                <Switch {...label} defaultChecked size="small" />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <span className='text-[#004744] mr-2 cursor-pointer'>VIEW</span>
+                <span className='text-[#004744] mr-4 cursor-pointer'>EDIT</span>
+                <span onClick={displayDelete} className='text-[#7C7B7B] cursor-pointer'>DELETE</span>
+              </StyledTableCell>
 
-        <thead className='h-[40px] bg-[#EFEFEF] border-b-[3px] border-gray-300 flex flex-row font-bold'>
-
-          <th className='w-[29px] h-full flex flex-row justify-center items-center'>ID</th>
-          <th className='w-[182px] h-full flex flex-row pl-2 items-center'>Brand</th>
-          <th className='w-[304px] h-full flex flex-row pl-2 items-center '>Sku</th>
-          <th className='w-[304px] h-full flex flex-row pl-2 items-center'>Weight</th>
-          <th className='w-[306px] h-full flex flex-row pl-2 items-center'>Price</th>
-          <th className='w-[123px] h-full flex flex-row justify-center items-center'>Enabled</th>
-          <th className='w-[151px] h-full flex flex-row justify-center items-center'>Action</th>
-        </thead>
-        <tbody className='h-[225px] '>
-          {listUsers && listUsers.map((data, index) => (
-
-            <tr key={`users-${index}`} className='h-[45px] flex flex-row' >
-              <td className='w-[29px] h-full flex flex-row justify-center items-center'>{data.id}</td>
-              <td className='w-[182px] h-full flex flex-row pl-2 items-center'>{data.brand}</td>
-              <td className='w-[304px] h-full flex flex-row pl-2 items-center '>{data.sku}</td>
-              <td className='w-[304px] h-full flex flex-row pl-2 items-center'>{data.weight}</td>
-              <td className='w-[306px] h-full flex flex-row pl-2 items-center'>{data.price}</td>
-              <td className='w-[126px] h-full flex '>
-                <img src="/public/Station/Switch.png" alt="" className='w-[25px] h-[14px] m-auto' />
-              </td>
-              <div className='w-[140px] h-full flex flex-row justify-center items-center text-[13px]'>
-                <h3 className='text-[#004744] mr-2'>VIEW</h3>
-                <h3 className='text-[#004744] mr-4'>EDIT</h3>
-                <h3 className='text-[#7C7B7B]'>DELETE</h3>
-              </div>
-            </tr>
-          ))
-          }
-
-        </tbody>
-      </table >
-    </>
-  )
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
+
 export default TableStation

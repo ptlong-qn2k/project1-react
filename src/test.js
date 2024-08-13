@@ -8,7 +8,7 @@ function App() {
 }
 
 function child(callback) {
-    console.log("callback: ", callback);
+    console.log("callback: ", typeof callback);
 
     const childData = 'child Data'
 

@@ -6,22 +6,22 @@ import '../App.css'
 
 
 const DeleteStation = () => {
-    const [detele, SetDelete] = useState()
+  const [detele, SetDelete] = useState()
 
-    return (
-        <>
-            <div className="w-[378px] h-[190px] border border-solid flex flex-col m-auto relative top-[100px]">
-                <h2 className="text-xl absolute  left-[34px] top-[41px]">Delete Station?</h2>
-                <p className="text-xs absolute w-[314px] left-[34px] top-[69px]">This action is not reversible, all child-organisation data will be deleted.</p>
-                <div className="w-[203px] h-[26px] flex flex-row justify-between absolute left-[145px] top-[132px]">
-                    <button className="w-[99px] h-full text-sm bg-[#04474433] text-[#004744] flex items-center justify-center">Cancel</button>
-                    <button className="w-[94px] h-full text-sm bg-[#004744] text-white flex items-center justify-center">Confirm</button>
-                </div>
-            </div>
+  return (
+    <>
+      <div className="w-[378px] h-[190px] border border-solid flex flex-col m-auto relative top-[100px]">
+        <h2 className="text-xl absolute  left-[34px] top-[41px]">Delete Station?</h2>
+        <p className="text-xs absolute w-[314px] left-[34px] top-[69px]">This action is not reversible, all child-organisation data will be deleted.</p>
+        <div className="w-[203px] h-[26px] flex flex-row justify-between absolute left-[145px] top-[132px]">
+          <button className="w-[99px] h-full text-sm bg-[#04474433] text-[#004744] flex items-center justify-center">Cancel</button>
+          <button className="w-[94px] h-full text-sm bg-[#004744] text-white flex items-center justify-center">Confirm</button>
+        </div>
+      </div>
 
 
-        </>
-    )
+    </>
+  )
 }
 export default DeleteStation
 {/* <div className='h-[45px] bg-[#7B7B7B0D] flex flex-row'>
