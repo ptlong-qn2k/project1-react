@@ -7,52 +7,42 @@ import Header from './Components/Header'
 import SearchStation from './Components/SearchStation'
 import TableStation from './Components/TableStation'
 import { fetchData } from './Services/UserService'
-import DeleteStation from './ComponentsPopup/DeleteStation'
+// import DeleteStation from './ComponentsPopup/DeleteStation'
 
 
 function App() {
-
+  const [sidebar, setSidebar] = useState(false)
+  const [page, setPage] = useState(1);
+  const [perpage, setPerpage] = useState("5");
   const [listUsers, setListUsers] = useState()
+  const [limit, setLimit] = useState(5)
   const [uid, setid] = useState(0)
-  const [total, setTotal] = useState()
+  const [count, setCount] = useState()
   const [title, setTitle] = useState("title")
   const [sku, setSku] = useState("sku")
   const [weight, setWeight] = useState("weight")
   const [price, setPrice] = useState("price")
   const [search, setSearch] = useState("")
-  const [dataDelete, setDataDelete] = useState()
-  const [status, setStatus] = useState(false)
+  const [dataTotal, setDatatotal] = useState()
 
+  // const [dataDelete, setDataDelete] = useState()
+  // const [status, setStatus] = useState(false)
+  // const [status2, setStatus2] = useState(false)
 
   useEffect(() => {
-    console.log("check listuser");
-
     getUsers();
-  }, [uid, title, sku, weight, price, search])
+  }, [uid, limit, title, sku, weight, price, search])
 
   let getUsers = async () => {
-    let res = await fetchData.get(`products?limit=5&skip=${uid}&select=${title},${sku},${weight},${price},/search?q=${search}`);
-    if (status && search.length > 0) {
-      res = await fetchData.get(`products/search?q=${search}`);
-    } else {
-      setStatus(false)
-    }
+    let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=${uid}&select=${title},${sku},${weight},${price}`);
 
     if (res && res.data) {
       setListUsers(res.data.products)
-      console.log("ressss:", res.data.products);
-      setTotal(res.data.total);
-      res.data.total % 5 == 0 ? setTotal(Math.floor(res.data.total / 5)) : setTotal(Math.floor(res.data.total / 5) + 1)
+      setDatatotal(res.data.total)
+      res.data.total % limit == 0 ? setCount(Math.floor(res.data.total / limit)) : setCount(Math.floor(res.data.total / limit) + 1)
     }
   }
-  // console.log("total:", total);
-  // console.log("uid dataL", uid);
 
-  const onChangePage = (id) => {   // id la data from child
-    // console.log("datapage:", id);
-    setid((id - 1) * 5)
-    console.log("check value", id);
-  }
   const dataTitle = () => {
     title == "" ? setTitle("title") : setTitle("")
   }
@@ -65,21 +55,44 @@ function App() {
   const dataPrice = () => {
     price == "" ? setPrice("price") : setPrice("")
   }
-  const dataSearch = (value) => {
-    setSearch(value)
-    console.log("checkvalue:", value);
-    console.log("check search:", search);
-    setStatus(true)
+
+  const onChangeUid = (value_page) => {   // id la data from child
+    setid((value_page - 1) * limit)
+    console.log("valuepage", value_page);
+    setPage(value_page)
   }
 
+  const onChangePerPage = (value_count) => {
+    setPerpage(value_count);  //trùng với limit
+    setLimit(value_count)
+    setid(0)
+    setPage(1)
+    // setStatus2(true)
+  }
+
+  const dataSearch = (value_search) => {
+    setSearch(value_search)
+    setLimit(5)
+    setid(0)
+    setPage(1)
+    setStatus(true)
+  }
 
   const deleteData = (value) => {
     console.log(value);
   }
 
+  const statusSidebar = (value) => {
+    setSidebar(!sidebar)
+    console.log("check", value);
+  }
+
   return (
-    <div className='w-full px-10 mx-auto'>
-      <Header />
+    <div className={`px-10 mx-auto ${sidebar ? "ml-[250px] w-[calc(100%_-_250px)]" : "w-full"}`}>
+      <Header
+        sidebar={sidebar}
+        statusSidebar={statusSidebar}
+      />
       <SearchStation
         dataSearch={dataSearch}
       />
@@ -92,10 +105,13 @@ function App() {
         deleteData={deleteData}
       />
       <Pagination
-        // page={4}
-        onChangePage={onChangePage}
-        total={total}
-      // page={page}
+        page={page}
+        perpage={perpage}
+        limit={limit}
+        dataTotal={dataTotal}
+        onChangeUid={onChangeUid}
+        count={count}
+        onChangePerPage={onChangePerPage}
       />
 
     </div>

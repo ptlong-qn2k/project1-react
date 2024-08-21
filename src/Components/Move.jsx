@@ -196,3 +196,30 @@ export default Move
 //   </>
 // )
 // // }
+
+
+// renderItem={(item) => (
+//     <PaginationItem
+//         slots={{ previous: (props) => <div {...props} className='w-[89px] flex flex-row justify-center items-center'>Previous</div>, next: (props) => <div {...props} className='w-[55px] h-full flex flex-row justify-center items-center' > Next</div>, }}
+//         {...item}
+//     />
+// )}
+// let res = await fetchData.get(`products?limit=5&skip=${uid}&select=${title},${sku},${weight},${price}`);
+// if (statusSearch && search.length > 0) {
+//     res = await fetchData.get(`products/search?q=${search}`);
+// } else {
+//     setStatusSearch(false)
+// }
+
+// if (res && res.data) {
+//     setListUsers(res.data.products)
+// }
+// if (statusPerpage) {
+//     console.log(" hien tai", count);
+
+// } else {
+//     res.data.total % 5 == 0 ? setCount(Math.floor(res.data.total / 5)) : setCount(Math.floor(res.data.total / 5) + 1)
+//     setStatusPerpage(false)
+// }
+
+// }

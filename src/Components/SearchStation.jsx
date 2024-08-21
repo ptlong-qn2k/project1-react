@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import '../App.css'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -8,7 +9,11 @@ const SearchStation = ({ dataSearch }) => {
     const searchButton = () => {
         dataSearch(document.getElementById("search").value)
     }
-
+    const searchButton2 = (e) => {
+        if (e.key === "Enter") {
+            searchButton()
+        }
+    }
 
     return (
         <>
@@ -17,7 +22,7 @@ const SearchStation = ({ dataSearch }) => {
                     <div className='w-[202px] h-8 border border-solid border-[#D7D7D7] rounded-[5px] flex flex-row  items-center' >
                         <div className='w-[119px] h-4 ml-2 flex flex-row justify-between'>
                             <img src="public/session2/search.png" alt="" className='w-4 h-4 mr-[7px]' />
-                            <input id="search" type="text" placeholder='search programs' className='text-xs text-[#747474]' />
+                            <input id="search" onKeyDown={searchButton2} type="text" placeholder='search programs' className='text-xs text-[#747474]' />
                         </div>
 
                     </div>

@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 // DATA FILE
 import { SidebarData } from "./SlidebarData";
 // STYLES
-import "../App.css";
+import "./navBar.css";
 
 export default function Navbar() {
     const [sidebar, setSidebar] = useState(false);

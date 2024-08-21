@@ -39,10 +39,7 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, de
 
   // console.log("Props", listUsers);
   const [boolean, setBoolean] = useState(false)
-  const [boolean1, setBoolean1] = useState(false)
-  const HanleSwitch = () => {
-    setBoolean(!boolean)
-  }
+
 
   const displayTitle = () => {
     dataTitle()
@@ -58,11 +55,11 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, de
   }
   const displayDelete = () => {
     console.log("click deleyte", deleteData);
-    setBoolean1(!boolean1)
-    deleteData(boolean1)
+    setBoolean(!boolean)
+    deleteData(boolean)
   }
   return (
-    <TableContainer component={Paper} className="mb-[368px]">
+    <TableContainer component={Paper} className="mb-[30px]">
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
