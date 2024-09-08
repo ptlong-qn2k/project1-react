@@ -1,7 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import '../App.css'
+import '../Styles/App.css'
 
 const Move = () => {
     return (
@@ -223,3 +223,13 @@ export default Move
 // }
 
 // }
+let tuoi = 24
+let infor = "pham thanh long" + tuoi + "tuoi"
+
+let inf = `pham thanh long ${tuoi} tuoi`
+
+let func = (para1 = 7, para2) => {
+    console.log("tong cac so truyen vao trong : ", para1 + para2)
+}
+
+func()

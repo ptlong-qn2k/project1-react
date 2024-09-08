@@ -1,16 +1,16 @@
 import { useState } from "react";
-import './navBar.css'
+import '../Styles/App.css'
 import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import * as AiIcons from "react-icons/ai";
-import { SidebarData } from "./SlidebarData";
+import { SidebarData } from "../Components/SlidebarData"
+
 
 
 const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
         statusSidebar(value)
     }
-    console.log("sidebar:", sidebar);
 
     return (
         <>
@@ -29,6 +29,7 @@ const Header = ({ statusSidebar, sidebar }) => {
                                 return (
                                     <li key={index} className={item.cName}>
                                         <a to={item.path}>
+                                            {/* {item.icon} */}
                                             <span>{item.title}</span>
                                         </a>
                                     </li>

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import '../App.css'
+import '../Styles/App.css'
+import ModalDelete from "../ComponentsModal/DeleteStation"
+import ModalEdit from "../ComponentsModal/EditStation";
+import ModalGetSingle from "../ComponentsModal/GetSingle";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -35,10 +38,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, deleteData }) => {
+const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) => {
 
   // console.log("Props", listUsers);
-  const [boolean, setBoolean] = useState(false)
+  // const [boolean, setBoolean] = useState(false)
+  const [open1, setOpen1] = useState(false);
+  const handleClose1 = () => setOpen1(false);
+  const displayDelete = () => {
+    setOpen1(true);
+  }
+  const [open2, setOpen2] = useState(false)
+  const handleClose2 = () => { setOpen2(false) }
+  const displayEdit = () => {
+    setOpen2(true)
+  }
+  const [open3, setOpen3] = useState(false)
+  const handleClose3 = () => { setOpen3(false) }
+  const displayView = () => {
+    setOpen3(true)
+  }
 
 
   const displayTitle = () => {
@@ -53,11 +71,11 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, de
   const displayPrice = () => {
     dataPrice()
   }
-  const displayDelete = () => {
-    console.log("click deleyte", deleteData);
-    setBoolean(!boolean)
-    deleteData(boolean)
-  }
+  // const displayDelete = () => {
+  //   console.log("click deleyte", deleteData);
+  //   setBoolean(!boolean)
+  //   deleteData(boolean)
+  // }
   return (
     <TableContainer component={Paper} className="mb-[30px]">
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -84,8 +102,8 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, de
                 <Switch {...label} defaultChecked size="small" />
               </StyledTableCell>
               <StyledTableCell align="left">
-                <span className='text-[#004744] mr-2 cursor-pointer'>VIEW</span>
-                <span className='text-[#004744] mr-4 cursor-pointer'>EDIT</span>
+                <span onClick={displayView} className='text-[#004744] mr-2 cursor-pointer'>VIEW</span>
+                <span onClick={displayEdit} className='text-[#004744] mr-4 cursor-pointer'>EDIT</span>
                 <span onClick={displayDelete} className='text-[#7C7B7B] cursor-pointer'>DELETE</span>
               </StyledTableCell>
 
@@ -93,6 +111,18 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice, de
           ))}
         </TableBody>
       </Table>
+      <ModalDelete
+        handleClose1={handleClose1}
+        open1={open1}
+      />
+      <ModalEdit
+        handleClose2={handleClose2}
+        open2={open2}
+      />
+      <ModalGetSingle
+        handleClose3={handleClose3}
+        open3={open3}
+      />
     </TableContainer>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import './Styles/App.css'
 import axios from 'axios'
 
 import Pagination from "./Components/Pagination"
@@ -25,11 +25,42 @@ function App() {
   const [search, setSearch] = useState("")
   const [dataTotal, setDatatotal] = useState()
 
+
+
   // const [dataDelete, setDataDelete] = useState()
   // const [status, setStatus] = useState(false)
   // const [status2, setStatus2] = useState(false)
 
   useEffect(() => {
+    //   let func = (para1 = 7, para2 = 43) => {
+    //     console.log("tong cac so truyen vao trong : ", para1 + para2)
+    //   }
+
+    //   func()
+    //   let myfun = (bien1, bien2, ...bienn) => {
+    //     console.log("bien 1:", bien1);
+    //     console.log("bien 2:", bien2);
+    //     console.log("bienn:", bienn);
+    //   }
+    //   myfun("Nhi", "Lanh", "long", "Nhi2", "Danh", "okokok")
+
+    //   function Function1() {
+    //     console.log("function es5");
+    //   }
+    //   let Function2 = () => {
+    //     console.log("function es6");
+    //   }
+
+    //   let myarr = ["Nhi", "NHị", "Long", "Lành"]
+    //   let [a, b, , d] = myarr
+    //   console.log(`du lieu la ${a} va ${b} vs ${d}`);
+
+    //   let { w, ...other } = { q: 1, w: 2, e: 3, r: 4 }
+    //   console.log(other);
+    //   let [x, ...other2] = ["x = 3", "y = 7", "z = 19", "t = 22"]
+    //   console.log(other2);
+
+
     getUsers();
   }, [uid, limit, title, sku, weight, price, search])
 
@@ -75,7 +106,7 @@ function App() {
     setLimit(5)
     setid(0)
     setPage(1)
-    setStatus(true)
+    // setStatus(true)
   }
 
   const deleteData = (value) => {
@@ -84,8 +115,9 @@ function App() {
 
   const statusSidebar = (value) => {
     setSidebar(!sidebar)
-    console.log("check", value);
   }
+  console.log("check", sidebar);
+
 
   return (
     <div className={`px-10 mx-auto ${sidebar ? "ml-[250px] w-[calc(100%_-_250px)]" : "w-full"}`}>

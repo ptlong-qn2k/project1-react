@@ -3,12 +3,14 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');
 
-@layer base {
+/* @layer base {
   body {
     font-family: "Exo"
+    font-family: "Playwrite CU", cursive;
   }
-}
+} */
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
