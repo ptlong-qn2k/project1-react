@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import '../Styles/App.css'
+import { fetchData } from "../Services/UserService";
 import ModalDelete from "../ComponentsModal/DeleteStation"
 import ModalEdit from "../ComponentsModal/EditStation";
 import ModalGetSingle from "../ComponentsModal/GetSingle";
@@ -15,8 +16,6 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 
 const label = { inputProps: { 'aria-label': 'Size switch demo' } };
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,21 +42,24 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
   // console.log("Props", listUsers);
   // const [boolean, setBoolean] = useState(false)
   const [open1, setOpen1] = useState(false);
-  const handleClose1 = () => setOpen1(false);
-  const displayDelete = () => {
+  const [idDelete, setIdDelete] = useState()
+  const displayDelete = (e, idDelete) => {
     setOpen1(true);
+    setIdDelete(idDelete)
   }
   const [open2, setOpen2] = useState(false)
-  const handleClose2 = () => { setOpen2(false) }
-  const displayEdit = () => {
+  const [idUpdate, setIDUpdate] = useState()
+  const displayEdit = (e, idUpdate) => {
     setOpen2(true)
+    setIDUpdate(idUpdate)
   }
   const [open3, setOpen3] = useState(false)
-  const handleClose3 = () => { setOpen3(false) }
-  const displayView = () => {
+  const [id, setId] = useState()
+  const displayView = (e, id) => {
+    // console.log("check:", id);
     setOpen3(true)
+    setId(id)
   }
-
 
   const displayTitle = () => {
     dataTitle()
@@ -71,11 +73,7 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
   const displayPrice = () => {
     dataPrice()
   }
-  // const displayDelete = () => {
-  //   console.log("click deleyte", deleteData);
-  //   setBoolean(!boolean)
-  //   deleteData(boolean)
-  // }
+
   return (
     <TableContainer component={Paper} className="mb-[30px]">
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -102,9 +100,10 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
                 <Switch {...label} defaultChecked size="small" />
               </StyledTableCell>
               <StyledTableCell align="left">
-                <span onClick={displayView} className='text-[#004744] mr-2 cursor-pointer'>VIEW</span>
-                <span onClick={displayEdit} className='text-[#004744] mr-4 cursor-pointer'>EDIT</span>
-                <span onClick={displayDelete} className='text-[#7C7B7B] cursor-pointer'>DELETE</span>
+                <span onClick={(e) => displayView(e, data.id)}
+                  className='text-[#004744] mr-2 cursor-pointer'>VIEW</span>
+                <span onClick={(e) => displayEdit(e, data.id)} className='text-[#004744] mr-4 cursor-pointer'>EDIT</span>
+                <span onClick={(e) => displayDelete(e, data.id)} className='text-[#7C7B7B] cursor-pointer'>DELETE</span>
               </StyledTableCell>
 
             </StyledTableRow>
@@ -112,17 +111,21 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
         </TableBody>
       </Table>
       <ModalDelete
-        handleClose1={handleClose1}
+        setOpen1={setOpen1}
         open1={open1}
+        idDelete={idDelete}
       />
       <ModalEdit
-        handleClose2={handleClose2}
         open2={open2}
+        setOpen2={setOpen2}
+        idUpdate={idUpdate}
       />
       <ModalGetSingle
-        handleClose3={handleClose3}
         open3={open3}
+        setOpen3={setOpen3}
+        id={id}
       />
+
     </TableContainer>
   );
 }

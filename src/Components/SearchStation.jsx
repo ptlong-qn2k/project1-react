@@ -4,7 +4,7 @@ import '../Styles/App.css'
 import { Button } from "@mui/material";
 import SearchIcon from "../assets/Icon/search";
 import CreateStation from "../ComponentsModal/CreateStation";
-const SearchStation = ({ dataSearch, style1 }) => {
+const SearchStation = ({ dataSearch }) => {
 
     const searchButton = () => {
         dataSearch(document.getElementById("search").value)
@@ -15,9 +15,9 @@ const SearchStation = ({ dataSearch, style1 }) => {
         }
     }
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
+    const handleOpen = () => {
+        setOpen(true);
+    }
 
     return (
         <>
@@ -28,10 +28,8 @@ const SearchStation = ({ dataSearch, style1 }) => {
                             <img src="public/session2/search.png" alt="" className='w-4 h-4 mr-[7px]' />
                             <input id="search" onKeyDown={searchButton2} type="text" placeholder='search programs' className='text-xs text-[#747474]' />
                         </div>
-
                     </div>
                     <Button onClick={searchButton} variant="container" startIcon={<SearchIcon />} className="!bg-[#04474433]">Stations</Button>
-
                 </div>
                 <div className='w-[103px] cursor-pointer h-8 rounded-[5px] bg-[#004744] flex flex-row justify-center items-center'>
                     <div onClick={handleOpen} className='w-[87px] h-4 flex flex-row justify-between items-center'>
@@ -39,10 +37,9 @@ const SearchStation = ({ dataSearch, style1 }) => {
                         <p className='text-xs text-white' >Add Station</p>
                     </div>
                     <CreateStation
-                        handleClose={handleClose}
                         open={open}
+                        setOpen={setOpen}
                     />
-
                 </div>
             </div >
         </>

@@ -1,14 +1,13 @@
 import React from 'react'
 import { useState } from "react";
-import Popup from 'reactjs-popup';
+import { fetchData } from '../Services/UserService';
 import 'reactjs-popup/dist/index.css';
 import '../Styles/App.css'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
 
-const ModalDelete = ({ handleClose1, open1 }) => {
-
+const ModalDelete = ({ setOpen1, open1, idDelete }) => {
   const style = {
     position: 'absolute',
     top: '0',
@@ -19,6 +18,12 @@ const ModalDelete = ({ handleClose1, open1 }) => {
     border: '2px solid #000',
     // boxShadow: 0,
   };
+  const handleClose1 = async () => {
+    setOpen1(false);
+    await fetchData.delete(`/products/${idDelete}`)
+      .then(console.log);
+  }
+
   return (
     <Modal
       open={open1}
@@ -45,65 +50,3 @@ const ModalDelete = ({ handleClose1, open1 }) => {
   )
 }
 export default ModalDelete
-{/* <div className='h-[45px] bg-[#7B7B7B0D] flex flex-row'>
-            <h3 className='w-[29px] h-full flex flex-row justify-center items-center'></h3>
-            <h3 className='w-[182px] h-full flex flex-row pl-2 items-center'>Brand</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center '>Sku</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center'>Weight</h3>
-            <h3 className='w-[306px] h-full flex flex-row pl-2 items-center'>Price</h3>
-            <div className='w-[126px] h-full flex '>
-              <img src="/public/Station/Switch2.png" alt="" className='w-[25px] h-[14px] m-auto' />
-            </div>
-            <div className='w-[140px] h-full flex flex-row justify-center items-center text-[13px]'>
-              <h3 className='text-[#004744] mr-2'>VIEW</h3>
-              <h3 className='text-[#004744] mr-4'>EDIT</h3>
-              <h3 className='text-[#7C7B7B]'>DELETE</h3>
-            </div>
-          </div>
-
-          <div className='h-[45px] flex flex-row'>
-            <h3 className='w-[29px] h-full flex flex-row justify-center items-center'></h3>
-            <h3 className='w-[182px] h-full flex flex-row pl-2 items-center'>Brand</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center '>Sku</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center'>Weight</h3>
-            <h3 className='w-[306px] h-full flex flex-row pl-2 items-center'>Price</h3>
-            <div className='w-[126px] h-full flex '>
-              <img src="/public/Station/Switch2.png" alt="" className='w-[25px] h-[14px] m-auto' />
-            </div> <div className='w-[140px] h-full flex flex-row justify-center items-center text-[13px]'>
-              <h3 className='text-[#004744] mr-2'>VIEW</h3>
-              <h3 className='text-[#004744] mr-4'>EDIT</h3>
-              <h3 className='text-[#7C7B7B]'>DELETE</h3>
-            </div>
-          </div>
-
-          <div className='h-[45px] bg-[#7B7B7B0D] flex flex-row'>
-            <h3 className='w-[29px] h-full flex flex-row justify-center items-center'></h3>
-            <h3 className='w-[182px] h-full flex flex-row pl-2 items-center'>Brand</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center '>Sku</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center'>Weight</h3>
-            <h3 className='w-[306px] h-full flex flex-row pl-2 items-center'>Price</h3>
-            <div className='w-[126px] h-full flex '>
-              <img src="/public/Station/Switch2.png" alt="" className='w-[25px] h-[14px] m-auto' />
-            </div>
-            <div className='w-[140px] h-full flex flex-row justify-center items-center text-[13px]'>
-              <h3 className='text-[#004744] mr-2'>VIEW</h3>
-              <h3 className='text-[#004744] mr-4'>EDIT</h3>
-              <h3 className='text-[#7C7B7B]'>DELETE</h3>
-            </div>
-          </div>
-
-          <div className='h-[45px] flex flex-row'>
-            <h3 className='w-[29px] h-full flex flex-row justify-center items-center'></h3>
-            <h3 className='w-[182px] h-full flex flex-row pl-2 items-center'>Brand</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center '>Sku</h3>
-            <h3 className='w-[304px] h-full flex flex-row pl-2 items-center'>Weight</h3>
-            <h3 className='w-[306px] h-full flex flex-row pl-2 items-center'>Price</h3>
-            <div className='w-[126px] h-full flex '>
-              <img src="/public/Station/Switch2.png" alt="" className='w-[25px] h-[14px] m-auto' />
-            </div>
-            <div className='w-[140px] h-full flex flex-row justify-center items-center text-[13px]'>
-              <h3 className='text-[#004744] mr-2'>VIEW</h3>
-              <h3 className='text-[#004744] mr-4'>EDIT</h3>
-              <h3 className='text-[#7C7B7B]'>DELETE</h3>
-            </div>
-          </div> */}

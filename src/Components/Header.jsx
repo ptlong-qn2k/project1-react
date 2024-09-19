@@ -5,8 +5,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "../Components/SlidebarData"
 
-
-
 const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
         statusSidebar(value)
@@ -16,7 +14,7 @@ const Header = ({ statusSidebar, sidebar }) => {
         <>
             <div className='w-full h-[50px] flex flex-row justify-between items-center m-auto'>
                 <div className='w-[119px] h-8 flex flex-row items-center'>
-                    <Button startIcon={<MenuIcon />} onClick={showSidebar} className={`!bg-[#04474433] !w-8 !h-8 rounded-[5px] ${sidebar ? "!hidden" : ""}`}></Button>
+                    <Button startIcon={<MenuIcon />} onClick={showSidebar} className={`!bg-[#04474433] !w-8 !h-8 rounded-[5px] !mx-auto ${sidebar ? "!hidden" : ""}`}></Button>
                     <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
                         <ul className="nav-menu-items" onClick={showSidebar}>
                             <li className="navbar-toggle">

@@ -16,7 +16,7 @@ function App() {
   const [perpage, setPerpage] = useState("5");
   const [listUsers, setListUsers] = useState()
   const [limit, setLimit] = useState(5)
-  const [uid, setid] = useState(0)
+  const [uid, setUid] = useState(0)
   const [count, setCount] = useState()
   const [title, setTitle] = useState("title")
   const [sku, setSku] = useState("sku")
@@ -25,48 +25,12 @@ function App() {
   const [search, setSearch] = useState("")
   const [dataTotal, setDatatotal] = useState()
 
-
-
-  // const [dataDelete, setDataDelete] = useState()
-  // const [status, setStatus] = useState(false)
-  // const [status2, setStatus2] = useState(false)
-
   useEffect(() => {
-    //   let func = (para1 = 7, para2 = 43) => {
-    //     console.log("tong cac so truyen vao trong : ", para1 + para2)
-    //   }
-
-    //   func()
-    //   let myfun = (bien1, bien2, ...bienn) => {
-    //     console.log("bien 1:", bien1);
-    //     console.log("bien 2:", bien2);
-    //     console.log("bienn:", bienn);
-    //   }
-    //   myfun("Nhi", "Lanh", "long", "Nhi2", "Danh", "okokok")
-
-    //   function Function1() {
-    //     console.log("function es5");
-    //   }
-    //   let Function2 = () => {
-    //     console.log("function es6");
-    //   }
-
-    //   let myarr = ["Nhi", "NHị", "Long", "Lành"]
-    //   let [a, b, , d] = myarr
-    //   console.log(`du lieu la ${a} va ${b} vs ${d}`);
-
-    //   let { w, ...other } = { q: 1, w: 2, e: 3, r: 4 }
-    //   console.log(other);
-    //   let [x, ...other2] = ["x = 3", "y = 7", "z = 19", "t = 22"]
-    //   console.log(other2);
-
-
     getUsers();
   }, [uid, limit, title, sku, weight, price, search])
 
   let getUsers = async () => {
     let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=${uid}&select=${title},${sku},${weight},${price}`);
-
     if (res && res.data) {
       setListUsers(res.data.products)
       setDatatotal(res.data.total)
@@ -88,7 +52,7 @@ function App() {
   }
 
   const onChangeUid = (value_page) => {   // id la data from child
-    setid((value_page - 1) * limit)
+    setUid((value_page - 1) * limit)
     console.log("valuepage", value_page);
     setPage(value_page)
   }
@@ -96,17 +60,15 @@ function App() {
   const onChangePerPage = (value_count) => {
     setPerpage(value_count);  //trùng với limit
     setLimit(value_count)
-    setid(0)
+    setUid(0)
     setPage(1)
-    // setStatus2(true)
   }
 
   const dataSearch = (value_search) => {
     setSearch(value_search)
     setLimit(5)
-    setid(0)
+    setUid(0)
     setPage(1)
-    // setStatus(true)
   }
 
   const deleteData = (value) => {
@@ -116,11 +78,11 @@ function App() {
   const statusSidebar = (value) => {
     setSidebar(!sidebar)
   }
-  console.log("check", sidebar);
+  // console.log("check", sidebar);
 
 
   return (
-    <div className={`px-10 mx-auto ${sidebar ? "ml-[250px] w-[calc(100%_-_250px)]" : "w-full"}`}>
+    <div className={`px-[15px] mx-auto ${sidebar ? "ml-[250px] w-[calc(100%_-_250px)]" : "w-full"}`}>
       <Header
         sidebar={sidebar}
         statusSidebar={statusSidebar}
