@@ -4,17 +4,24 @@ import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "../Components/SlidebarData"
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
         statusSidebar(value)
     }
+    let navigate = useNavigate();
+    const useParams = () => {
+        navigate("/products")
+    }
 
     return (
         <>
             <div className='w-full h-[50px] flex flex-row justify-between items-center m-auto'>
-                <div className='w-[119px] h-8 flex flex-row items-center'>
-                    <Button startIcon={<MenuIcon />} onClick={showSidebar} className={`!bg-[#04474433] !w-8 !h-8 rounded-[5px] !mx-auto ${sidebar ? "!hidden" : ""}`}></Button>
+                <div className='w-[full] h-8 flex flex-row items-center'>
+                    <Button startIcon={<MenuIcon fontSize="large" />} onClick={showSidebar} className={`!bg-[#07080833] !pl-4 !w-8 !px-auto !h-8 rounded-[5px] !mx-auto ${sidebar ? "!hidden" : ""}`}></Button>
                     <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
                         <ul className="nav-menu-items" onClick={showSidebar}>
                             <li className="navbar-toggle">
@@ -25,17 +32,17 @@ const Header = ({ statusSidebar, sidebar }) => {
 
                             {SidebarData.map((item, index) => {
                                 return (
-                                    <li key={index} className={item.cName}>
-                                        <a to={item.path}>
-                                            {/* {item.icon} */}
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </li>
+                                    <div key={index} className={item.cName}>
+                                        <Link to={item.path} className="flex flex-row items-center">
+                                            {item.icon}
+                                            <span className="ml-5">{item.title}</span>
+                                        </Link>
+                                    </div>
                                 );
                             })}
                         </ul>
                     </nav>
-                    <p className={`font-bold text-base ml-3`}>Programs</p>
+                    <p onClick={useParams} className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
                 </div>
                 <div className='w-[150px] h-[29px] flex flex-row justify-between'>
                     <div className='w-[113px] h-[29px] flex flex-col items-end justify-center leading-3 text-[12px]'>

@@ -56,7 +56,7 @@ const ModalEdit = ({ setOpen2, open2, idUpdate }) => {
         const { name, value } = event.target;
         setDataEdit((prevData) => ({ ...prevData, [name]: value }))
         // console.log("event", event);
-        // console.log("title:", title);
+        // console.log("title:", dataEdit.title);
     }
 
     return (

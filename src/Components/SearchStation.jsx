@@ -3,7 +3,8 @@ import React from "react";
 import '../Styles/App.css'
 import { Button } from "@mui/material";
 import SearchIcon from "../assets/Icon/search";
-import CreateStation from "../ComponentsModal/CreateStation";
+// import CreateStation from "../ComponentsModal/CreateStation";
+import CreateStation from "../ComponentsModal/TaoProduct";
 const SearchStation = ({ dataSearch }) => {
 
     const searchButton = () => {
@@ -23,7 +24,7 @@ const SearchStation = ({ dataSearch }) => {
         <>
             <div className='w-full flex flex-row justify-between items-center m-auto mb-[19px] '>
                 <div className='w-[294px] h-8 flex flex-row justify-between'>
-                    <div className='w-[202px] h-8 border border-solid border-[#D7D7D7] rounded-[5px] flex flex-row  items-center' >
+                    <div className='w-[202px] h-8 mr-2  border border-solid border-[#D7D7D7] rounded-[5px] flex flex-row  items-center' >
                         <div className='w-[119px] h-4 ml-2 flex flex-row justify-between'>
                             <img src="public/session2/search.png" alt="" className='w-4 h-4 mr-[7px]' />
                             <input id="search" onKeyDown={searchButton2} type="text" placeholder='search programs' className='text-xs text-[#747474]' />
