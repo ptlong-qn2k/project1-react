@@ -3,13 +3,10 @@ import './Styles/App.css'
 import Pagination from "./Components/Pagination"
 import Header from './Components/Header'
 import SearchStation from './Components/SearchStation'
-import TableStation from './Components/TableStation'
+import TableStation from './Components/TableStationRouter'
 import { fetchData } from './Services/UserService'
-// import { Router, Routes } from 'react-router-dom'
-// import DeleteStation from './ComponentsPopup/DeleteStation'
 import { Routes, Route } from "react-router-dom";
-import Home from './ComponentPage/Products'
-
+import Login from './Components/Login'
 
 function MyComponent() {
     const [sidebar, setSidebar] = useState(false)
@@ -54,7 +51,7 @@ function MyComponent() {
 
     const onChangeUid = (value_page) => {   // id la data from child
         setUid((value_page - 1) * limit)
-        console.log("valuepage", value_page);
+        // console.log("valuepage", value_page);
         setPage(value_page)
     }
 
@@ -108,7 +105,7 @@ function MyComponent() {
                 count={count}
                 onChangePerPage={onChangePerPage}
             />
-
+            <Login />
         </div>
     )
 }

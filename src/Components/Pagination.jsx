@@ -10,9 +10,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function PaginationControlled({ onChangeUid, page, perpage, limit, count, dataTotal, onChangePerPage }) {
+    // const params = useParams();
+    // console.log(params);
 
+    const navigate = useNavigate()
     const handlePerPage = (event) => {
         // setPerpage(event.target.value);
         onChangePerPage(event.target.value)
@@ -20,8 +25,10 @@ export default function PaginationControlled({ onChangeUid, page, perpage, limit
     };
 
     const handleChangeUid = (e, value_page) => {
-        console.log("checkvalue1", value_page);
+        // console.log("checkvalue1", value_page);
         onChangeUid(value_page)
+        // navigate(`page/${value_page}`)
+
     };
 
 

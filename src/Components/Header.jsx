@@ -13,7 +13,7 @@ const Header = ({ statusSidebar, sidebar }) => {
         statusSidebar(value)
     }
     let navigate = useNavigate();
-    const useParams = () => {
+    const Programs = () => {
         navigate("/products")
     }
 
@@ -42,7 +42,7 @@ const Header = ({ statusSidebar, sidebar }) => {
                             })}
                         </ul>
                     </nav>
-                    <p onClick={useParams} className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
+                    <p onClick={Programs} className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
                 </div>
                 <div className='w-[150px] h-[29px] flex flex-row justify-between'>
                     <div className='w-[113px] h-[29px] flex flex-col items-end justify-center leading-3 text-[12px]'>
