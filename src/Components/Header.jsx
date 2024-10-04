@@ -7,6 +7,7 @@ import { SidebarData } from "../Components/SlidebarData"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Route } from "react-router-dom";
+import Logout from "./Logout";
 
 const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
@@ -15,6 +16,11 @@ const Header = ({ statusSidebar, sidebar }) => {
     let navigate = useNavigate();
     const Programs = () => {
         navigate("/products")
+    }
+
+    const [open, setOpen] = useState(false);
+    const hangleLogout = () => {
+        setOpen(true)
     }
 
     return (
@@ -49,13 +55,16 @@ const Header = ({ statusSidebar, sidebar }) => {
                         <p className='text-[#004744]'>Sam Rabera </p>
                         <p className='text-[#5C5C5C]'>Oraganisation Name</p>
                     </div>
-                    <div className="w-[29px] h-[29px] " >
+                    <div className="w-[29px] h-[29px] cursor-pointer " onClick={hangleLogout} >
                         <img src="public/session1/Group 659.png" alt="" />
                     </div>
                 </div>
             </div >
-
             <hr className='w-full mb-[19px] m-auto' />
+            <Logout
+                open={open}
+                setOpen={setOpen}
+            />
         </>
     )
 }

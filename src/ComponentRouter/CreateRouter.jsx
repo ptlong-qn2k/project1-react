@@ -30,6 +30,8 @@ const CreateRouter = ({ }) => {
                 /* other product data */
             })
         })
+            .then(res => res.json())
+            .then(console.log)
             .then(Toastify);
         navigate("/")
         // reset()

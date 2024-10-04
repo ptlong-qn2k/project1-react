@@ -1,24 +1,62 @@
 import { useForm } from "react-hook-form"
 import '../Styles/App.css'
 import Checkbox from '@mui/material/Checkbox';
-
-
+import yup from "../Services/yupGlobal";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import Toastify from "../ComponentPage/Toasttify";
+import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
-    // const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const navigate = useNavigate()
+    const schema = yup.object().shape({
+        username: yup
+            .string()
+            .required('username is Required'),
+        // .username('username invalid'),
+        password: yup
+            .string()
+            .required('password is Required')
+        // .password('Password invalid'),
+    })
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onChange',
+        resolver: yupResolver(schema)
+    })
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const handleLogin = () => {
-        console.log("tao form login");
-        console.log("error", errors);
-    }
-    const onError = (errors) => {
-        console.log("error", errors);
+    // const token = localStorage.getItem("token_user")
+    // console.log("dang khong co token:", !token);
+    // useEffect(() => {
+    //     if (!!token) {
+    //         navigate("/")
+    //     }
+    // }, [token])
+    const onError = async (errors) => {
+        await axios({
+            url: "https://dummyjson.com/auth/login",
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
 
+            data: JSON.stringify({
+                username: errors.username,
+                password: errors.password,
+                expiresInMins: 30, // optional, defaults to 60
+            }),
+        })
+            .then(function (res) {
+                console.log(res.data.accessToken);
+                localStorage.setItem(`token_user`, res.data.accessToken)
+                navigate("/")
+            })
+            .catch((error) => {
+                Toastify()
+            })
     }
 
     return (
-        <div className="w-full h-full flex flex-row items-center  ">
+        <div className="w-full h-[690px] flex flex-row items-center  " >
             <img src="../public/login/Illustrations.png" alt="" className="w-[67%] h-[100%]" />
             <div className="w-[33%] h-full flex flex-col px-[5%] justify-center">
                 <div className="w-[100%] h-[74px] flex flex-col justify-between mb-[23px]">
@@ -26,30 +64,34 @@ const Login = () => {
                     <p className="text-sm text-centers text-center">Please sign-in to your account and start the adventure</p>
                 </div>
 
-                <form onSubmit={handleSubmit(handleLogin, onError)} className="">
+                <form onSubmit={handleSubmit(onError)} className="">
                     <div className="mb-[15px]">
-                        <label htmlFor="" className="block">Email*</label>
-                        <input type="text" placeholder="johndoe@gmail.com" className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
-                            {...register("Email", {
+                        <label htmlFor="" className="block">Username*</label>
+                        <input type="text" name="username" placeholder="johndoe@gmail.com" className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
+                            {...register("username", {
                                 required: true,
                                 pattern: /^[A-Za-z]+$/i
                             })} />
-                        {errors?.Email?.type === "required" && (
-                            <p className="text-[#EA5455]">Email is required</p>
-                        )}
+                        {/* {errors?.emilyspass?.type === "required" && (
+                        <p className="text-[#EA5455]">Username is required</p>
+                    )} */}
+                        {errors.username && <p className="text-[#EA5455]">{errors.username.message}</p>}
+
                     </div>
                     <div className="mb-[14px]">
                         <div className="flex flex-row h-[18px] justify-between items-center mb-1">
                             <label htmlFor="">Password*</label>
                             <button className="text-[#7367F0] flex flex-row items-center bg-white border-hidden h-[18px]">forgot Password?</button>
                         </div>
-                        <input type="text" placeholder="⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉" className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
-                            {...register("Password", {
+                        <input type="password" name="password" placeholder="⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉" className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
+                            {...register("password", {
                                 required: true,
                             })} />
-                        {errors?.Password?.type === "required" && (
-                            <p className="text-[#EA5455]">Password is require</p>
-                        )}
+                        {/* {errors?.password?.type === "required" && (
+                        <p className="text-[#EA5455]">Password is require</p>
+                    )} */}
+                        {errors.password && <p className="text-[#EA5455]">{errors.password.message}</p>}
+
                     </div>
                     <div className="flex flex-row w-[134px] h-[21px]  items-center mb-[14px]">
                         <Checkbox {...label} defaultChecked className=" !h-[21px] " />
@@ -74,7 +116,8 @@ const Login = () => {
 
                 </form>
             </div>
-        </div>
+            <ToastContainer />
+        </div >
     )
 }
 export default Login
