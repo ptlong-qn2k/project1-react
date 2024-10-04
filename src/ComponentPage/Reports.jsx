@@ -1,9 +1,15 @@
 import React from "react";
+import '../Styles/App.css'
+import Layout from "./Layout";
 const Reports = () => {
+
     return (
-        <div>
-            <h1>Myreport</h1>
-        </div>
+        <Layout>
+            <div className="home">
+                <h1 className="text-center">Myreport</h1>
+            </div>
+        </Layout>
+
     )
 }
 export default Reports

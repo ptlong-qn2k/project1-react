@@ -1,9 +1,13 @@
 import React from "react";
+import Layout from "./Layout";
 const Teams = () => {
     return (
-        <div>
-            <h1 className="text-4xl text-black">MyTeams</h1>
-        </div>
+        <Layout>
+            <div className="home">
+                <h1 >MyTeams</h1>
+            </div>
+        </Layout>
+
     )
 }
 export default Teams

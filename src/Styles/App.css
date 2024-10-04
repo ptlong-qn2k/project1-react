@@ -126,6 +126,11 @@ body {
   padding: 0;
 }
 
+nav a.active {
+  color: green;
+  background-color: wheat;
+}
+
 .navbar-toggle {
   background-color: var(--navBg);
   width: 100%;

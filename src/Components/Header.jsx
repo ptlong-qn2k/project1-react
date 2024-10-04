@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Logout from "./Logout";
+import { NavLink, Outlet } from "react-router-dom";
+
 
 const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
@@ -39,10 +41,10 @@ const Header = ({ statusSidebar, sidebar }) => {
                             {SidebarData.map((item, index) => {
                                 return (
                                     <div key={index} className={item.cName}>
-                                        <Link to={item.path} className="flex flex-row items-center">
+                                        <NavLink to={item.path} className={`flex flex-row items-center ${({ isActive }) => (isActive ? 'active' : '')} `}>
                                             {item.icon}
                                             <span className="ml-5">{item.title}</span>
-                                        </Link>
+                                        </NavLink>
                                     </div>
                                 );
                             })}

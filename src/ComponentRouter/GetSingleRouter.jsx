@@ -30,19 +30,29 @@ const GetSingleRouter = ({ }) => {
             }
         }
     }
+    const decreate = () => {
+        navigate(`/getsingle/${Number(params.id) - 1}`)
+    }
+    const increate = () => {
+        navigate(`/getsingle/${Number(params.id) + 1}`)
+    }
 
     return (
         <div>
             {
                 JSON.stringify(dataSingle) === '{}' ? <p className='bg-white text-center'>khong co du lieu data</p> :
-                    <Box className="w-[378px] h-full border border-solid flex flex-col m-auto relative top-[100px]">
-                        <p className='text-center mt-5'>{dataSingle.title}-{dataSingle.price}$</p>
-                        <img src={`${dataSingle.images}`} alt="" className='w-[300px] h-[300px] mx-auto' />
-                        <div className="w-[203px] h-[26px] flex flex-row justify-between mx-auto mt-5">
-                            <button className="w-[99px] h-full text-sm bg-[#04474433] text-[#004744] flex items-center justify-center">Cancel</button>
-                            <button onClick={(e) => handleClose3()} className="w-[94px] h-full text-sm bg-[#004744] text-white flex items-center justify-center">Confirm</button>
-                        </div>
-                    </Box>
+                    <div className="flex flex-row justify-center items-center relative top-[100px]">
+                        <button onClick={decreate} className="bg-orange-500">Last</button>
+                        <Box className="w-[378px]  border border-solid flex flex-col items-center relative ">
+                            <p className='text-center mt-5'>{dataSingle.title}-{dataSingle.price}$</p>
+                            <img src={`${dataSingle.images}`} alt="" className='w-[300px] h-[300px] mx-auto' />
+                            <div className="w-[203px] h-[26px] flex flex-row justify-between mx-auto mt-5">
+                                <button className="w-[99px] h-full text-sm bg-[#04474433] text-[#004744] flex items-center justify-center">Cancel</button>
+                                <button onClick={(e) => handleClose3()} className="w-[94px] h-full text-sm bg-[#004744] text-white flex items-center justify-center">Confirm</button>
+                            </div>
+                        </Box>
+                        <button onClick={increate} className="bg-orange-500">Next</button>
+                    </div>
             }
         </div>
 

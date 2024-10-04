@@ -1,6 +1,12 @@
+import Layout from "./Layout"
+
 const Supports = () => {
     return (
-        <h1>My Support</h1>
+        <Layout>
+            <div className="home">
+                <h1>My Message</h1>
+            </div>
+        </Layout>
     )
 }
 export default Supports

@@ -14,10 +14,11 @@ import CreateRouter from './ComponentRouter/CreateRouter';
 import Login from './Components/Login';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Header from './Components/Header';
 function App() {
   const navigate = useNavigate()
   const token = localStorage.getItem("token_user")
-  console.log("dang khong co token:", !token);
+  // console.log("dang khong co token:", !token);
 
   useEffect(() => {
     if (!token) {

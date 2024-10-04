@@ -45,7 +45,7 @@ const Login = () => {
                 expiresInMins: 30, // optional, defaults to 60
             }),
         })
-            .then(function (res) {
+            .then((res) => {
                 console.log(res.data.accessToken);
                 localStorage.setItem(`token_user`, res.data.accessToken)
                 navigate("/")
