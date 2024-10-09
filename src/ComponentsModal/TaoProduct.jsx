@@ -8,7 +8,6 @@ import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 // import "../Styles/hook.css"
 
-
 const CreateStation = ({ open, setOpen }) => {
     const style = {
         position: 'absolute',

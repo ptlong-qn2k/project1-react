@@ -8,9 +8,6 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Assignment, SupportAgent } from "@mui/icons-material";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 
-
-
-
 export const SidebarData = [
     {
         title: "Home",

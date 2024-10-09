@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import PaginationItem from "@mui/material/PaginationItem";
@@ -28,17 +27,15 @@ export default function PaginationControlled({ onChangeUid, page, perpage, limit
         // console.log("checkvalue1", value_page);
         onChangeUid(value_page)
         // navigate(`page/${value_page}`)
-
     };
-
 
     return (
         <div className='flex flex-row justify-between items-end w-full h-full m-auto '>
             <p className='w-[198px]h - [13px] text - [13px] cursor-pointer' >`Showing {page} to {count} of {dataTotal}  entries`</p>
             <Box sx={{ minWidth: 50 }}>
-                <FormControl >
+                <FormControl className='w-full' >
                     <Select sx={{
-                        width: 60,
+                        // width: 60,
                         height: 30,
                     }}
                         value={limit}

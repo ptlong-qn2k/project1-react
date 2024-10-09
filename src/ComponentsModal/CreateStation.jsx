@@ -52,7 +52,6 @@ const CreateStation = ({ open, setOpen }) => {
                 <div className="w-[377px] h-[26px] flex flex-row mx-auto mb-[22px] mt-7 justify-between items-center">
                     <button className="text-sm flex flex-row items-center h-[26px] font-bold">Add Station</button>
                     <Button onClick={handleClose} variant="container" className={`w-[85px] h-[26px] !bg-[#04474433] !lowercase`} >cancel</Button>
-                    {/* <button onClick={handleClose} className="w-[72px] h-[26px]  bg-[#004744] text-white flex flex-row items-center justify-center">Save</button> */}
                 </div>
                 <form className='w-[377px] h-[26px] flex flex-col ml-10 mb-[22px] mt-7 justify-between items-start '>
                     <label htmlFor="title" className='flex w-[300px] flex-row justify-between items-center'>title
@@ -69,12 +68,6 @@ const CreateStation = ({ open, setOpen }) => {
                     </label>
                     <button onClick={handleClose} type='submit' className='w-[85px] h-[26px]  bg-[#004744] text-white flex flex-row items-center justify-center'>Create</button>
                 </form>
-                {/* <form>
-                    <label>Input Value:
-                        <input type="text" value={data} onChange={handleClose} />
-                    </label>
-                    <p>Input Value: {data}</p>
-                </form> */}
             </Box>
         </Modal>
     )

@@ -24,6 +24,7 @@ const Move = () => {
     )
 };
 export default Move
+let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=${uid}&select=${title},${sku},${weight},${price}`);
 
 // const List = styled('ul')({
 //     listStyle: 'none',

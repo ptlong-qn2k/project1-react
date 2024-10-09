@@ -73,11 +73,8 @@ function Layout({ children }) {
                 sidebar={sidebar}
                 statusSidebar={statusSidebar}
             />
-            <SearchStation
-                dataSearch={dataSearch}
-            />
+
             <div>{children}</div>
-            {/* <Login /> */}
         </div>
     )
 }

@@ -49,7 +49,7 @@ const GetSingleRouter = ({ }) => {
                 {
                     JSON.stringify(dataSingle) === '{}' ? <p className='bg-white text-center'>khong co du lieu data</p> :
                         <div className="flex justify-center items-center  ">
-                            <Box className="w-[378px] border border-black border-solid flex flex-col items-center relative p-5 ">
+                            <Box className="w-[378px] flex flex-col items-center relative p-5 ">
                                 <h2 className="text-lg font-bold text-[#2d30ba] ">get single product</h2>
                                 <p className='text-center mt-5'>{dataSingle.title}-{dataSingle.price}$</p>
                                 <img src={`${dataSingle.images}`} alt="" className='w-[300px] h-[300px] mx-auto' />

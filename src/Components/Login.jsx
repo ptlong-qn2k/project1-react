@@ -26,13 +26,6 @@ const Login = () => {
         resolver: yupResolver(schema)
     })
 
-    // const token = localStorage.getItem("token_user")
-    // console.log("dang khong co token:", !token);
-    // useEffect(() => {
-    //     if (!!token) {
-    //         navigate("/")
-    //     }
-    // }, [token])
     const onError = async (errors) => {
         await axios({
             url: "https://dummyjson.com/auth/login",
@@ -51,7 +44,7 @@ const Login = () => {
                 navigate("/")
             })
             .catch((error) => {
-                Toastify()
+                Toastify("nhap lai thong tin dang nhap")
             })
     }
 

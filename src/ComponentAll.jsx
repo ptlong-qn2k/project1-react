@@ -5,8 +5,6 @@ import Header from './Components/Header'
 import SearchStation from './Components/SearchStation'
 import TableStation from './Components/TableStationRouter'
 import { fetchData } from './Services/UserService'
-import { Routes, Route } from "react-router-dom";
-import Login from './Components/Login'
 
 function MyComponent() {
     const [sidebar, setSidebar] = useState(false)
@@ -35,19 +33,6 @@ function MyComponent() {
             res.data.total % limit == 0 ? setCount(Math.floor(res.data.total / limit)) : setCount(Math.floor(res.data.total / limit) + 1)
         }
     }
-
-    // const dataTitle = () => {
-    //     title == "" ? setTitle("title") : setTitle("")
-    // }
-    // const dataSku = () => {
-    //     sku == "sku" ? setSku("") : setSku("sku")
-    // }
-    // const dataWeight = () => {
-    //     weight == "" ? setWeight("weight") : setWeight("")
-    // }
-    // const dataPrice = () => {
-    //     price == "" ? setPrice("price") : setPrice("")
-    // }
 
     const onChangeUid = (value_page) => {   // id la data from child
         setUid((value_page - 1) * limit)
@@ -78,7 +63,6 @@ function MyComponent() {
     }
     // console.log("check", sidebar);
 
-
     return (
         <div className={`${sidebar ? "pr-[15px] ml-[250px] w-[calc(100%_-_250px)]" : "w-full px-[15px] mx-auto"}`}>
             <Header
@@ -90,10 +74,6 @@ function MyComponent() {
             />
             <TableStation
                 listUsers={listUsers}
-                // dataTitle={dataTitle}
-                // dataSku={dataSku}
-                // dataWeight={dataWeight}
-                // dataPrice={dataPrice}
                 deleteData={deleteData}
             />
             <Pagination
@@ -105,7 +85,6 @@ function MyComponent() {
                 count={count}
                 onChangePerPage={onChangePerPage}
             />
-            {/* <Login /> */}
         </div>
     )
 }

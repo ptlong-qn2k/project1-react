@@ -5,7 +5,6 @@ import 'reactjs-popup/dist/index.css';
 import '../Styles/App.css'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 
 
 const ModalEdit = ({ setOpen2, open2, idUpdate }) => {

@@ -61,7 +61,7 @@ body {
 }
 
 :root {
-  --navBg: #060b26;
+  --navBg: #0d084b;
 }
 
 .navbar {
@@ -79,7 +79,7 @@ body {
 }
 
 .nav-menu {
-  background-color: var(--navBg);
+  background-color: rgb(126, 0, 128);
   width: 250px;
   /* margin-left: 15px; */
   height: 100vh;

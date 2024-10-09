@@ -2,20 +2,32 @@ import { useState } from "react";
 import '../Styles/App.css'
 import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import * as AiIcons from "react-icons/ai";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 import { SidebarData } from "../Components/SlidebarData"
-// import { Link } from "react-router-dom";
-import Logout from "./Logout";
 import { NavLink, Outlet } from "react-router-dom";
-
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
+import { Logout } from "@mui/icons-material";
 
 const Header = ({ statusSidebar, sidebar }) => {
+    const navigate = useNavigate()
+
     const showSidebar = (value) => {
         statusSidebar(value)
     }
-    const [open, setOpen] = useState(false);
-    const hangleLogout = () => {
-        setOpen(true)
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleLogout = () => {
+        localStorage.removeItem("token_user")
+        navigate("/")
     }
 
     return (
@@ -27,7 +39,7 @@ const Header = ({ statusSidebar, sidebar }) => {
                         <ul className="nav-menu-items" onClick={showSidebar}>
                             <li className="navbar-toggle">
                                 <a to="#" className="menu-bars">
-                                    <AiIcons.AiOutlineClose />
+                                    <AiOutlineCloseSquare cursor="pointer" />
                                 </a>
                             </li>
 
@@ -45,21 +57,40 @@ const Header = ({ statusSidebar, sidebar }) => {
                     </nav>
                     <p className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
                 </div>
-                <div className='w-[150px] h-[29px] flex flex-row justify-between'>
+                <div className='w-[full] h-[29px] flex flex-row justify-between'>
                     <div className='w-[113px] h-[29px] flex flex-col items-end justify-center leading-3 text-[12px]'>
                         <p className='text-[#004744]'>Sam Rabera </p>
                         <p className='text-[#5C5C5C]'>Oraganisation Name</p>
                     </div>
-                    <div className="w-[29px] h-[29px] cursor-pointer " onClick={hangleLogout} >
-                        <img src="public/session1/Group 659.png" alt="" />
-                    </div>
+                    <Button
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >
+                        <img src="/public/session1/Group 659.png" alt="" className="w-[29px] h-[29px]" />
+                    </Button>
                 </div>
             </div >
             <hr className='w-full mb-[19px] m-auto' />
-            <Logout
-                open={open}
-                setOpen={setOpen}
-            />
+            <div>
+
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+                >
+                    <div onClick={handleLogout} className="w-[150px] flex flex-row items-center justify-center cursor-pointer">
+                        <Logout />
+                        <MenuItem  >Logout</MenuItem>
+                    </div>
+                </Menu>
+            </div>
         </>
     )
 }
