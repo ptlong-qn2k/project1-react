@@ -37,7 +37,10 @@ export default function PaginationControlled({ onChangeUid, page, perpage, limit
             <p className='w-[198px]h - [13px] text - [13px] cursor-pointer' >`Showing {page} to {count} of {dataTotal}  entries`</p>
             <Box sx={{ minWidth: 50 }}>
                 <FormControl >
-                    <Select
+                    <Select sx={{
+                        width: 60,
+                        height: 30,
+                    }}
                         value={limit}
                         onChange={handlePerPage}
                     >
