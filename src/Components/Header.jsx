@@ -4,9 +4,7 @@ import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "../Components/SlidebarData"
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { Route } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -15,11 +13,6 @@ const Header = ({ statusSidebar, sidebar }) => {
     const showSidebar = (value) => {
         statusSidebar(value)
     }
-    let navigate = useNavigate();
-    const Programs = () => {
-        navigate("/products")
-    }
-
     const [open, setOpen] = useState(false);
     const hangleLogout = () => {
         setOpen(true)
@@ -29,7 +22,7 @@ const Header = ({ statusSidebar, sidebar }) => {
         <>
             <div className='w-full h-[50px] flex flex-row justify-between items-center m-auto'>
                 <div className='w-[full] h-8 flex flex-row items-center'>
-                    <Button startIcon={<MenuIcon fontSize="large" />} onClick={showSidebar} className={`!bg-[#07080833] !pl-4 !w-8 !px-auto !h-8 rounded-[5px] !mx-auto ${sidebar ? "!hidden" : ""}`}></Button>
+                    <Button startIcon={<MenuIcon fontSize="large" />} onClick={showSidebar} className={`!min-w-0 !bg-[#07080833] !pl-[21px] !w-8 !px-auto !h-8 rounded-[5px] !mx-auto ${sidebar ? "!hidden" : ""}`}></Button>
                     <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
                         <ul className="nav-menu-items" onClick={showSidebar}>
                             <li className="navbar-toggle">
@@ -50,7 +43,7 @@ const Header = ({ statusSidebar, sidebar }) => {
                             })}
                         </ul>
                     </nav>
-                    <p onClick={Programs} className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
+                    <p className={`font-bold text-base ml-3 cursor-pointer`}>Programs</p>
                 </div>
                 <div className='w-[150px] h-[29px] flex flex-row justify-between'>
                     <div className='w-[113px] h-[29px] flex flex-col items-end justify-center leading-3 text-[12px]'>

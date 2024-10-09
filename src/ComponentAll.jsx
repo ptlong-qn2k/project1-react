@@ -36,18 +36,18 @@ function MyComponent() {
         }
     }
 
-    const dataTitle = () => {
-        title == "" ? setTitle("title") : setTitle("")
-    }
-    const dataSku = () => {
-        sku == "sku" ? setSku("") : setSku("sku")
-    }
-    const dataWeight = () => {
-        weight == "" ? setWeight("weight") : setWeight("")
-    }
-    const dataPrice = () => {
-        price == "" ? setPrice("price") : setPrice("")
-    }
+    // const dataTitle = () => {
+    //     title == "" ? setTitle("title") : setTitle("")
+    // }
+    // const dataSku = () => {
+    //     sku == "sku" ? setSku("") : setSku("sku")
+    // }
+    // const dataWeight = () => {
+    //     weight == "" ? setWeight("weight") : setWeight("")
+    // }
+    // const dataPrice = () => {
+    //     price == "" ? setPrice("price") : setPrice("")
+    // }
 
     const onChangeUid = (value_page) => {   // id la data from child
         setUid((value_page - 1) * limit)
@@ -80,7 +80,7 @@ function MyComponent() {
 
 
     return (
-        <div className={`px-[15px] mx-auto ${sidebar ? "ml-[250px] w-[calc(100%_-_250px)]" : "w-full"}`}>
+        <div className={`${sidebar ? "pr-[15px] ml-[250px] w-[calc(100%_-_250px)]" : "w-full px-[15px] mx-auto"}`}>
             <Header
                 sidebar={sidebar}
                 statusSidebar={statusSidebar}
@@ -90,10 +90,10 @@ function MyComponent() {
             />
             <TableStation
                 listUsers={listUsers}
-                dataTitle={dataTitle}
-                dataSku={dataSku}
-                dataWeight={dataWeight}
-                dataPrice={dataPrice}
+                // dataTitle={dataTitle}
+                // dataSku={dataSku}
+                // dataWeight={dataWeight}
+                // dataPrice={dataPrice}
                 deleteData={deleteData}
             />
             <Pagination

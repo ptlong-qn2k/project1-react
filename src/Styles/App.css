@@ -81,7 +81,7 @@ body {
 .nav-menu {
   background-color: var(--navBg);
   width: 250px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -127,7 +127,7 @@ body {
 }
 
 nav a.active {
-  color: green;
+  color: rgb(188, 14, 20);
   background-color: wheat;
 }
 

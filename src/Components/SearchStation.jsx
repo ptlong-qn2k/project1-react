@@ -30,7 +30,7 @@ const SearchStation = ({ dataSearch }) => {
                 <div className='w-[294px] h-8 flex flex-row justify-between'>
                     <div className='w-[202px] h-8 mr-2  border border-solid border-[#D7D7D7] rounded-[5px] flex flex-row  items-center' >
                         <div className='w-[119px] h-4 ml-2 flex flex-row justify-between'>
-                            <img src="public/session2/search.png" alt="" className='w-4 h-4 mr-[7px]' />
+                            <img src="/public/session2/search.png" alt="" className='w-4 h-4 mr-[7px]' />
                             <input id="search" onKeyDown={searchButton2} name="search" type="text" placeholder='search programs' className='text-xs text-[#747474]' />
                         </div>
                     </div>
@@ -38,7 +38,7 @@ const SearchStation = ({ dataSearch }) => {
                 </div>
                 <div className='w-[103px] cursor-pointer h-8 rounded-[5px] bg-[#004744] flex flex-row justify-center items-center'>
                     <div onClick={handleOpen} className='w-[87px] h-4 flex flex-row justify-between items-center'>
-                        <img src="public/session2/plus.png" alt="" className='w-4 h-4' />
+                        <img src="/public/session2/plus.png" alt="" className='w-4 h-4' />
                         <p className='text-xs text-white' >Add Station</p>
                     </div>
                     {/* <CreateStation

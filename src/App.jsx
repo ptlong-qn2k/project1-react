@@ -38,7 +38,7 @@ function App() {
       <Route path='/support' element={<Supports />} />
       <Route path='/getsingle/:id' element={<GetSingleRouter />} />
       <Route path='/getedituser/:id' element={<GetEditRouter />} />
-      <Route path='/deleteuser/:id' element={<DeleteRouter />} />
+      {/* <Route path='/deleteuser/:id' element={<DeleteRouter />} /> */}
       <Route path='/create-user' element={<CreateRouter />} />
       <Route path="/login" element={<Login />} />
     </Routes>

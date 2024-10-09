@@ -9,7 +9,6 @@ import { fetchData } from '../Services/UserService'
 import { Routes, Route } from "react-router-dom";
 import Login from '../Components/Login'
 import { Children } from 'react'
-
 function Layout({ children }) {
     const [sidebar, setSidebar] = useState(false)
     const [page, setPage] = useState(1);
@@ -36,19 +35,6 @@ function Layout({ children }) {
             setDatatotal(res.data.total)
             res.data.total % limit == 0 ? setCount(Math.floor(res.data.total / limit)) : setCount(Math.floor(res.data.total / limit) + 1)
         }
-    }
-
-    const dataTitle = () => {
-        title == "" ? setTitle("title") : setTitle("")
-    }
-    const dataSku = () => {
-        sku == "sku" ? setSku("") : setSku("sku")
-    }
-    const dataWeight = () => {
-        weight == "" ? setWeight("weight") : setWeight("")
-    }
-    const dataPrice = () => {
-        price == "" ? setPrice("price") : setPrice("")
     }
 
     const onChangeUid = (value_page) => {   // id la data from child

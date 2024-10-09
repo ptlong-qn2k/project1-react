@@ -35,15 +35,10 @@ export default function PaginationControlled({ onChangeUid, page, perpage, limit
     return (
         <div className='flex flex-row justify-between items-end w-full h-full m-auto '>
             <p className='w-[198px]h - [13px] text - [13px] cursor-pointer' >`Showing {page} to {count} of {dataTotal}  entries`</p>
-            <Box height={40}
-                width={120} >
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Per page</InputLabel>
+            <Box sx={{ minWidth: 50 }}>
+                <FormControl >
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
                         value={limit}
-                        label="Age"
                         onChange={handlePerPage}
                     >
                         <MenuItem value={5}>5</MenuItem>

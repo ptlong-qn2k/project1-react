@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import '../Styles/App.css'
+import { useState } from 'react';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -11,8 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import { useNavigate } from "react-router-dom";
-import Toastify from "../ComponentPage/Toasttify";
 import { ToastContainer, toast } from 'react-toastify';
+import ModalDelete from '../ComponentRouter/DeleteRouter';
 
 
 const label = { inputProps: { 'aria-label': 'Size switch demo' } };
@@ -38,12 +38,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) => {
+
+const TableStation = ({ listUsers }) => {
     let navigate = useNavigate();
+    const [open1, setOpen1] = useState(false);
+    const [idDelete, setIdDelete] = useState()
 
     const displayDelete = (e, idDelete) => {
-        navigate(`/deleteuser/${idDelete}`)
+        setOpen1(true);
+        setIdDelete(idDelete)
     }
+
+    // const displayDelete = (e, idDelete) => {
+    //     navigate(`/deleteuser/${idDelete}`)
+    // }
     // const displayEdit = (e, idUpdate) => {
     //     navigate(`/getedituser/${idUpdate}`)
     // }
@@ -51,30 +59,17 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
     //     navigate(`/getsingle/${id}`)
     // }
 
-    const displayTitle = () => {
-        dataTitle()
-    }
-    const displaySku = () => {
-        dataSku()
-    }
-    const displayWeight = () => {
-        dataWeight()
-    }
-    const displayPrice = () => {
-        dataPrice()
-    }
-
     return (
         <TableContainer component={Paper} className="mb-[30px]">
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="left">ID</StyledTableCell>
-                        <StyledTableCell onClick={displayTitle} align="left" className="cursor-pointer">Tittle</StyledTableCell>
-                        <StyledTableCell onClick={displaySku} align="left" className="cursor-pointer">Sku</StyledTableCell>
-                        <StyledTableCell onClick={displayWeight} align="left" className="cursor-pointer">Weight</StyledTableCell>
-                        <StyledTableCell onClick={displayPrice} align="left" className="cursor-pointer">Price</StyledTableCell>
-                        <StyledTableCell onClick={Toastify} align="left">Enable</StyledTableCell>
+                        <StyledTableCell align="left" className="cursor-pointer">Tittle</StyledTableCell>
+                        <StyledTableCell align="left" className="cursor-pointer">Sku</StyledTableCell>
+                        <StyledTableCell align="left" className="cursor-pointer">Weight</StyledTableCell>
+                        <StyledTableCell align="left" className="cursor-pointer">Price</StyledTableCell>
+                        <StyledTableCell align="left">Enable</StyledTableCell>
                         <StyledTableCell align="left">Actions</StyledTableCell>
                     </TableRow>
                 </TableHead>
@@ -101,8 +96,12 @@ const TableStation = ({ listUsers, dataTitle, dataSku, dataWeight, dataPrice }) 
                     ))}
                 </TableBody>
             </Table>
+            <ModalDelete
+                setOpen1={setOpen1}
+                open1={open1}
+                idDelete={idDelete}
+            />
             <ToastContainer />
-
         </TableContainer>
     );
 }
