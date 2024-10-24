@@ -1,5 +1,5 @@
-import React from "react";
-import Layout from "./Layout";
+import React from 'react';
+import Layout from './Layout';
 export default function Products() {
     return (
         <Layout>
@@ -7,6 +7,5 @@ export default function Products() {
                 <h1>My products</h1>
             </div>
         </Layout>
-
     );
 }

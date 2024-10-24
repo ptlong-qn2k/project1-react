@@ -1,5 +1,5 @@
-import React from "react";
-import Layout from "./Layout";
+import React from 'react';
+import Layout from './Layout';
 const Message = () => {
     return (
         <Layout>
@@ -7,6 +7,6 @@ const Message = () => {
                 <h1>My Message</h1>
             </div>
         </Layout>
-    )
-}
-export default Message
+    );
+};
+export default Message;

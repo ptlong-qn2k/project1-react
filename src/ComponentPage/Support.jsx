@@ -1,4 +1,4 @@
-import Layout from "./Layout"
+import Layout from './Layout';
 
 const Supports = () => {
     return (
@@ -7,6 +7,6 @@ const Supports = () => {
                 <h1>My Message</h1>
             </div>
         </Layout>
-    )
-}
-export default Supports
+    );
+};
+export default Supports;
