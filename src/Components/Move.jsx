@@ -1,30 +1,42 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import '../Styles/App.css'
+import '../Styles/App.css';
 
 const Move = () => {
     return (
-        <Popup className='w-full h-full m-auto' trigger={<button className='m-auto relative top-[200px] left-[200px]' > Trigger</button>} >
+        <Popup
+            className="w-full h-full m-auto"
+            trigger={<button className="m-auto relative top-[200px] left-[200px]"> Trigger</button>}
+        >
             <>
                 <div className="w-[377px] h-[26px] flex flex-row mx-auto mb-[22px] mt-7 justify-between">
                     <p className="text-sm my-auto">Add Station</p>
                     <div className="w-[164px] h-[26px] flex flex-row justify-between text-sm">
-                        <button className=" w-[85px] h-[26px]  bg-[#04474433] text-[#004744] flex flex-row items-center justify-center">Cancel</button>
-                        <button className="w-[72px] h-[26px]  bg-[#004744] text-white flex flex-row items-center justify-center">Save</button>
+                        <button className=" w-[85px] h-[26px]  bg-[#04474433] text-[#004744] flex flex-row items-center justify-center">
+                            Cancel
+                        </button>
+                        <button className="w-[72px] h-[26px]  bg-[#004744] text-white flex flex-row items-center justify-center">
+                            Save
+                        </button>
                     </div>
                 </div>
                 <div className="w-[377px] h-[50px] bg-[#F1F1F1] rounded-[4px] flex flex-col justify-center m-auto pl-4">
                     <p className="text-xs font-bold w-[76px] h-[16px]">Organization</p>
-                    <input type="text" placeholder="Organization Name" className="bg-[#F1F1F1] w-[345px] h-[14px] text-xs" />
+                    <input
+                        type="text"
+                        placeholder="Organization Name"
+                        className="bg-[#F1F1F1] w-[345px] h-[14px] text-xs"
+                    />
                 </div>
             </>
-
         </Popup>
-    )
+    );
 };
-export default Move
-let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=${uid}&select=${title},${sku},${weight},${price}`);
+export default Move;
+let res = await fetchData.get(
+    `products/search?q=${search}&limit=${limit}&skip=${uid}&select=${title},${sku},${weight},${price}`,
+);
 
 // const List = styled('ul')({
 //     listStyle: 'none',
@@ -57,7 +69,6 @@ let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=$
 //         //     onPage(page)
 //         // }
 //     }
-
 
 //     return (
 //         <div className='flex flex-row justify-between items-center w-full h-[38px] m-auto mb-5'>
@@ -110,14 +121,10 @@ let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=$
 // const onPage = props.onPage;
 // // console.log(onPage);
 
-
 // const hanleClick = () => {
 //     onPage(20)
 
 // }
-
-
-
 
 //     return (
 //         <>
@@ -149,7 +156,6 @@ let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=$
 //             </div >
 //         </>
 //     )
-
 
 // }
 
@@ -198,7 +204,6 @@ let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=$
 // )
 // // }
 
-
 // renderItem={(item) => (
 //     <PaginationItem
 //         slots={{ previous: (props) => <div {...props} className='w-[89px] flex flex-row justify-center items-center'>Previous</div>, next: (props) => <div {...props} className='w-[55px] h-full flex flex-row justify-center items-center' > Next</div>, }}
@@ -224,15 +229,14 @@ let res = await fetchData.get(`products/search?q=${search}&limit=${limit}&skip=$
 // }
 
 // }
-let tuoi = 24
-let infor = "pham thanh long" + tuoi + "tuoi"
+let tuoi = 24;
+let infor = 'pham thanh long' + tuoi + 'tuoi';
 
-let inf = `pham thanh long ${tuoi} tuoi`
+let inf = `pham thanh long ${tuoi} tuoi`;
 
 let func = (para1 = 7, para2) => {
-    console.log("tong cac so truyen vao trong : ", para1 + para2)
-}
-
+    console.log('tong cac so truyen vao trong : ', para1 + para2);
+};
 
 //   let func = (para1 = 7, para2 = 43) => {
 //     console.log("tong cac so truyen vao trong : ", para1 + para2)
