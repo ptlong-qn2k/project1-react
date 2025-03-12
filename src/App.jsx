@@ -14,7 +14,8 @@ import CreateRouter from './ComponentRouter/CreateRouter';
 import Login from './Components/Login';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Header from './Components/Header';
+import NotFound from './ComponentPage/Notfound';
+
 function App() {
     const navigate = useNavigate();
     const token = localStorage.getItem('token_user');
@@ -40,6 +41,7 @@ function App() {
             {/* <Route path='/deleteuser/:id' element={<DeleteRouter />} /> */}
             <Route path="/create-user" element={<CreateRouter />} />
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} /> //tao trang loi khi nhap sai duong link
         </Routes>
     );
 }
