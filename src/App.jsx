@@ -10,7 +10,7 @@ import GetSingleRouter from './ComponentRouter/GetSingleRouter';
 import GetEditRouter from './ComponentRouter/EditRouter';
 import DeleteRouter from './ComponentRouter/DeleteRouter';
 import Supports from './ComponentPage/Support';
-import CreateRouter from './ComponentRouter/CreateRouter';
+import CreateRouter from './ComponentRouter/CreateUserReacthookformEdit';
 import Login from './Components/Login';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';

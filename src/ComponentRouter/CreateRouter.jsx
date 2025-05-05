@@ -1,11 +1,10 @@
 import React from 'react';
 import { fetchData } from '../Services/UserService';
 import 'reactjs-popup/dist/index.css';
-import '../Styles/App.css';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import Toastify from '../ComponentPage/Toasttify';
+import { ToastifyError, ToastifySuccess } from '../ComponentPage/Toasttify';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../ComponentPage/Layout';
@@ -28,15 +27,15 @@ const CreateRouter = ({}) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             data: JSON.stringify({
-                title: `${data.title}`,
-                sku: `${data.sku}`,
-                weight: `${data.weight}`,
-                price: `${data.price}`,
+                title: data.title,
+                sku: data.sku,
+                weight: Number(data.weight),
+                price: Number(data.price),
             }),
         })
             // .then((res) => console.log(res))
-            .then(() => Toastify('Create is successfully'))
-            .catch((error) => Toastify('add product is error'));
+            .then(() => ToastifySuccess('Create is successfully'))
+            .catch((error) => ToastifyError('add product is error'));
         navigate('/');
     };
 
@@ -54,8 +53,8 @@ const CreateRouter = ({}) => {
                         <label className="flex w-[500px]  flex-row justify-between items-center">
                             title:
                             <input
-                                placeholder="  title"
-                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[10px]"
+                                placeholder="title"
+                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[20px]"
                                 {...register('title', {
                                     // required: true,
                                     maxLength: 20,
@@ -69,29 +68,29 @@ const CreateRouter = ({}) => {
                         <label className="flex w-[500px] flex-row justify-between items-center">
                             sku :
                             <input
-                                placeholder="  sku"
+                                placeholder="sku"
                                 {...register('sku', {
                                     pattern: /^[A-Za-z]+$/i,
                                 })}
-                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[10px]"
+                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[20px]"
                             />
                         </label>
                         {errors?.sku?.type === 'pattern' && <p>Alphabetical characters only</p>}
                         <label className="flex w-[500px] flex-row justify-between items-center">
                             weight:
                             <input
-                                placeholder="  weight"
+                                placeholder="weight"
                                 {...register('weight', { min: 0, max: 99 })}
-                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[10px]"
+                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[20px]"
                             />
                         </label>
                         {errors.weight && <p>You Must be older then 0 and weight then 99 kg</p>}
                         <label className="flex w-[500px] flex-row justify-between items-center">
                             price:
                             <input
-                                placeholder="  price"
+                                placeholder="price"
                                 {...register('price', { min: 0, max: 99 })}
-                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[10px]"
+                                className="bg-[#F1F1F1] w-[450px] h-[30px] text-xs pl-[20px]"
                             />
                         </label>
                         {errors.price && <p>you must be older then o and price 99 $</p>}

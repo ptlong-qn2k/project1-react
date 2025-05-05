@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Styles/App.css';
 import Layout from './Layout';
 const Reports = () => {
     return (

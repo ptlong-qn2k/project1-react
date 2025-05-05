@@ -6,9 +6,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Toastify from '../ComponentPage/Toasttify';
+import { ToastifyError } from '../ComponentPage/Toasttify';
 import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
+    const token = localStorage.getItem('token_user');
+    useEffect(() => {
+        if (token) {
+            navigate('/'); // Điều hướng đến dashboard nếu đã đăng nhập
+        }
+    }, [token]);
+
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const navigate = useNavigate();
     const schema = yup.object().shape({
@@ -30,15 +37,15 @@ const Login = () => {
         resolver: yupResolver(schema),
     });
 
-    const onError = async (errors) => {
+    const onSubmit = async (data) => {
         await axios({
             url: 'https://dummyjson.com/auth/login',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
 
             data: JSON.stringify({
-                username: errors.username,
-                password: errors.password,
+                username: data.username,
+                password: data.password,
                 expiresInMins: 30, // optional, defaults to 60
             }),
         })
@@ -48,7 +55,7 @@ const Login = () => {
                 navigate('/');
             })
             .catch((error) => {
-                Toastify('nhap lai thong tin dang nhap');
+                ToastifyError('nhap lai thong tin dang nhap');
             });
     };
 
@@ -63,20 +70,16 @@ const Login = () => {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit(onError)} className="">
+                <form onSubmit={handleSubmit(onSubmit)} className="">
                     <div className="mb-[15px]">
                         <label htmlFor="" className="block">
                             Username*
                         </label>
                         <input
                             type="text"
-                            name="username"
                             placeholder="johndoe@gmail.com"
                             className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
-                            {...register('username', {
-                                required: true,
-                                pattern: /^[A-Za-z]+$/i,
-                            })}
+                            {...register('username')}
                         />
                         {/* {errors?.emilyspass?.type === "required" && (
                         <p className="text-[#EA5455]">Username is required</p>
@@ -95,9 +98,7 @@ const Login = () => {
                             name="password"
                             placeholder="⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉ ⚉"
                             className="w-full h-[38px] border border-solid rounded-[5px] pl-[15px] bg-white"
-                            {...register('password', {
-                                required: true,
-                            })}
+                            {...register('password')}
                         />
                         {/* {errors?.password?.type === "required" && (
                         <p className="text-[#EA5455]">Password is require</p>
